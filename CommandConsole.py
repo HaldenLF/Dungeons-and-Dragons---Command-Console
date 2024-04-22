@@ -1,9 +1,7 @@
 import time
-from delay import delay_print # needs to be recreated and implemented due to file coruption
-# this essentailly took each out put to the terminal and printed letters one by one at a set speed.
+from delay import delay_print 
 from reboot_delay import screen_roll
-import countdown # needs to be recreated and implemented due to file coruption
-# This was a countdown function that would countdown from 10 and end the program once it reached 0
+import countdown 
 
 
 def unknown():
