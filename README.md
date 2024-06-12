@@ -1,4 +1,4 @@
-# Dungeons and Dragons Command Center System
+# Dungeons and Dragons Command Console
 
 ## This system was designed for a D&D game with friends. 
 
