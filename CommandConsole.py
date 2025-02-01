@@ -1,7 +1,5 @@
 import time
-from delay import delay_print 
-from reboot_delay import screen_roll
-import countdown 
+from utils import screen_roll, delay_print, countdown
 
 
 def unknown():
@@ -18,8 +16,8 @@ def unknown():
             "And my name is \n")
     delay_print(clue)
 
-    opt = input('> \n')
-    if opt.lower() == 'fear':
+    user_input = input('> \n')
+    if user_input.lower() == 'fear':
         delay_print('HEr0s LiIve - Rerys Werj')
         menu()
     else:
@@ -28,199 +26,183 @@ def unknown():
 
 
 def system():
-    print('--------------------------------------------------------------- \n')
-    system_menu = ('1: Power \n'
-                   '2: Engine \n'
-                   '3: Drill \n'
-                   '4: MA1_n \n')
-    delay_print(system_menu)
+    while True:
+        print('--------------------------------------------------------------- \n')
+        system_menu = ('1: Power \n'
+                    '2: Engine \n'
+                    '3: Drill \n'
+                    '4: MA1_n \n')
+        delay_print(system_menu)
 
-    try:
-        opt = input('> \n')
-
-        if opt.isdigit():
-            raise TypeError
-
-        if opt.lower() == 'power':
-            delay_print('Power gem drained. Recharge to start engine \n')
-            system()
-        elif opt.lower() == 'engine':
-            delay_print('Engine damaged, suggest to power down and maintenance before moving. \n')
-            system()
-        elif opt.lower() == 'drill':
-            delay_print('Drill fully operational \n')
-            system()
-        elif opt.lower() == 'main':
-            back = input('Back to main? Y/N \n')
-            delay_print(back)
-            if back.lower() == 'y':
-                menu()
-            elif back.lower() == 'n':
-                settings()
-        else:
-            system()
-    except TypeError:
-        delay_print("Num3r1c fa1lur3......\n")
-        time.sleep(0.5)
-        system()
+        try:
+            opt = input('> \n')
+            if opt.isdigit():
+                raise TypeError
+            
+            if opt.lower() == 'power':
+                delay_print('Power gem drained. Recharge to start engine \n')
+                continue
+            elif opt.lower() == 'engine':
+                delay_print('Engine damaged, suggest to power down and maintenance before moving. \n')
+                continue
+            elif opt.lower() == 'drill':
+                delay_print('Drill fully operational \n')
+                continue
+            elif opt.lower() == 'main':
+                back = input('Back to main? Y/N \n')
+                delay_print(back)
+                if back.lower() == 'y':
+                    menu()
+                elif back.lower() == 'n':
+                    settings()
+        except TypeError:
+            delay_print("Num3r1c fa1lur3......\n")
+            time.sleep(0.5)
+            continue
 
 
 def settings():
-    print('--------------------------------------------------------------- \n')
-    setting_menu = ('1: Self Destruct \n'
-                    '2: System Reboot \n'
-                    '3: Return to command \n'
-                    '4: Power down \n'
-                    '5: MA1_n \n')
-    delay_print(setting_menu)
+    while True:
+        print('--------------------------------------------------------------- \n')
+        setting_menu = ('1: Self Destruct \n'
+                        '2: System Reboot \n'
+                        '3: Return to command \n'
+                        '4: Power down \n'
+                        '5: MA1_n \n')
+        delay_print(setting_menu)
 
-    try:
-        opt = input('> \n')
-
-        if opt.isdigit():
-            raise TypeError
-
-        if opt.lower() == 'self destruct':
-            delay_print('Do you wish to initiate self destruct? Y/N \n')
-            user = input('> \n')
-            if user.lower() == 'y':
-                countdown.countdown()
-            elif user.lower() == 'n':
-                delay_print('Back to settings \n')
-                settings()
+        try:
+            user_input = input('> \n')
+            if user_input.isdigit():
+                raise TypeError
+            if user_input.lower() == 'self destruct':
+                delay_print('Do you wish to initiate self destruct? Y/N \n')
+                user = input('> \n')
+                if user.lower() == 'y':
+                    countdown()
+                elif user.lower() == 'n':
+                    delay_print('Back to settings \n')
+                    continue
+            elif user_input.lower() == 'system reboot':
+                delay_print('Do you wish to reboot? Y/N \n')
+                user = input('> \n')
+                if user.lower() == 'y':
+                    start()
+                elif user.lower() == 'n':
+                    delay_print('Back to settings \n')
+                    continue
+            elif user_input.lower() == 'return to command':
+                delay_print('Do you wish to return to command? Y/N \n')
+                user = input('> \n')
+                if user.lower() == 'y':
+                    delay_print('Error!!!! \n'
+                                'Engine damaged \n')
+                    countdown()
+                elif user.lower() == 'n':
+                    delay_print('Back to settings \n')
+                    continue
+            elif user_input.lower() == 'power down':
+                delay_print('Do you wish to power down? Y/N \n')
+                user = input('> \n')
+                if user.lower() == 'y':
+                    delay_print('Powering down')
+                elif user.lower() == 'n':
+                    delay_print('Back to settings \n')
+                    continue
+            elif user_input.lower() == 'main':
+                back = input('Back to main? Y/N \n')
+                delay_print(back)
+                if back.lower() == 'y':
+                    menu()
+                elif back.lower() == 'n':
+                    continue
             else:
-                settings()
-        elif opt.lower() == 'system reboot':
-            delay_print('Do you wish to reboot? Y/N \n')
-            user = input('> \n')
-            if user.lower() == 'y':
-                start()
-            elif user.lower() == 'n':
-                delay_print('Back to settings \n')
-                settings()
-            else:
-                settings()
-        elif opt.lower() == 'return to command':
-            delay_print('Do you wish to return to command? Y/N \n')
-            user = input('> \n')
-            if user.lower() == 'y':
-                delay_print('Error!!!! \n'
-                            'Engine damaged \n')
-                countdown.countdown()
-            elif user.lower() == 'n':
-                delay_print('Back to settings \n')
-                settings()
-            else:
-                settings()
-        elif opt.lower() == 'power down':
-            delay_print('Do you wish to power down? Y/N \n')
-            user = input('> \n')
-            if user.lower() == 'y':
-                delay_print('Powering down')
-            elif user.lower() == 'n':
-                delay_print('Back to settings \n')
-                settings()
-            else:
-                settings()
-        elif opt.lower() == 'main':
-            back = input('Back to main? Y/N \n')
-            delay_print(back)
-            if back.lower() == 'y':
-                menu()
-            elif back.lower() == 'n':
-                settings()
-            else:
-                settings()
-        else:
-            settings()
-    except TypeError:
-        print("Num3r1c fa1lur3......\n")
-        time.sleep(0.5)
-        settings()
+                continue
+        except TypeError:
+            print("Num3r1c fa1lur3......\n")
+            time.sleep(0.5)
+            continue
 
 
 def logs():
-    print('--------------------------------------------------------------- \n')
-    log_menu = ('1: Cr3w \n'
-                '2: Day of EmbARkm3nt \n'
-                '3: M1ssi_on \n'
-                '4: Inc1_d3nts \n'
-                '5: New Orders \n'
-                '6: MA1_n \n')
-    delay_print(log_menu)
+    while True:
+        print('--------------------------------------------------------------- \n')
+        log_menu = ('1: Cr3w \n'
+                    '2: Day of EmbARkm3nt \n'
+                    '3: M1ssi_on \n'
+                    '4: Inc1_d3nts \n'
+                    '5: New Orders \n'
+                    '6: MA1_n \n')
+        delay_print(log_menu)
 
-    try:
-        opt = int(input('> \n'))
+        try:
+            user_input = int(input('> \n'))
 
-        if opt == 1:
-            crew = '10 Animated Armours \n'
-            delay_print(crew)
-            logs()
-        elif opt == 2:
-            DoE = '1980--(late) \n'
-            delay_print(DoE)
-            logs()
-        elif opt == 3:
-            mission = 'Attack Nas na Riogh \n'
-            delay_print(mission)
-            logs()
-        elif opt == 4:
-            incident1 = 'Magiteck timer malfunction \n'
-            incident2 = 'earthquake forced direction change \n'
-            incident3 = 'WARNING INTRUDER!!!! \n'
-            incident4 = 'Resume Mission with updated crew \n'
-            delay_print(incident1)
-            delay_print(incident2)
-            delay_print(incident3)
-            delay_print(incident4)
-            logs()
-        elif opt == 5:
-            orders = ('Vessel under command from new commander as of 2 months \n'
-                      'Follow previous mission but with and update to crew\n '
-                      'Kill all who help the tyrant! \n')
-            delay_print(orders)
-            logs()
-        elif opt == 6:
-            back = input('Back to main? Y/N \n')
-            delay_print(back)
-            if back.lower() == 'y':
-                menu()
-            elif back.lower() == 'n':
-                logs()
-        else:
-            logs()
-    except ValueError:
-        print("AlPhachAract3r fa1lur3......\n")
-        time.sleep(0.5)
-        logs()
+            if user_input == 1:
+                crew = '10 Animated Armours \n'
+                delay_print(crew)
+                continue
+            elif user_input == 2:
+                DoE = '1980--(late) \n'
+                delay_print(DoE)
+                continue
+            elif user_input == 3:
+                mission = 'Attack Nas na Riogh \n'
+                delay_print(mission)
+                continue
+            elif user_input == 4:
+                incident1 = 'Magiteck timer malfunction \n'
+                incident2 = 'earthquake forced direction change \n'
+                incident3 = 'WARNING INTRUDER!!!! \n'
+                incident4 = 'Resume Mission with updated crew \n'
+                delay_print(incident1)
+                delay_print(incident2)
+                delay_print(incident3)
+                delay_print(incident4)
+                continue
+            elif user_input == 5:
+                orders = ('Vessel under command from new commander as of 2 months \n'
+                        'Follow previous mission but with and update to crew\n '
+                        'Kill all who help the tyrant! \n')
+                delay_print(orders)
+                continue
+            elif user_input == 6:
+                back = input('Back to main? Y/N \n')
+                delay_print(back)
+                if back.lower() == 'y':
+                    menu()
+                elif back.lower() == 'n':
+                    continue
+        except ValueError:
+            print("AlPhachAract3r fa1lur3......\n")
+            time.sleep(0.5)
+            continue
 
 
 def menu():
-    print('--------------------------------------------------------------- \n')
-    inner_menu = ('Ma1_n \n'
-                  '1: L0gs \n'
-                  '2: Sy*$3em \n'
-                  '3: S3tt1ng5 \n'
-                  '4: s%4@2*&-90 \n')
-    delay_print(inner_menu)
+    while True:
+        print('--------------------------------------------------------------- \n')
+        inner_menu = ('Ma1_n \n'
+                    '1: L0gs \n'
+                    '2: Sy*$3em \n'
+                    '3: S3tt1ng5 \n'
+                    '4: s%4@2*&-90 \n')
+        delay_print(inner_menu)
 
-    try:
-        opt = int(input('> \n'))
-
-        if opt == 1:
-            logs()
-        elif opt == 2:
-            system()
-        elif opt == 3:
-            settings()
-        elif opt == 4:
-            unknown()
-        else:
-            menu()
-    except ValueError:
-        print("AlPhachAract3r fa1lur3......\n")
-        time.sleep(0.5)
-        menu()
+        try:
+            opt = int(input('> \n'))
+            if opt == 1:
+                logs()
+            elif opt == 2:
+                system()
+            elif opt == 3:
+                settings()
+            elif opt == 4:
+                unknown()
+        except ValueError:
+            print("AlPhachAract3r fa1lur3......\n")
+            time.sleep(0.5)
+            continue
 
 
 def login_riddles():
@@ -299,32 +281,33 @@ def login_riddles():
 
     if count < 2:
         print('Access denied \n')
-        countdown.countdown()
+        countdown()
     else:
         menu()
 
 
 def start():
-    print('press /')
-    inpt = input('> \n')
-    error_msg = 'Error! Engine overloading \n'
-    malfunc_msg = 'Magiteck malfunction \n'
-    files_msg = 'Some systems and files have been lost or damaged \n'
-    reboot_msg = 'Do you wish to reboot? \n'
-    if inpt == '/':
-        delay_print(error_msg)
-        delay_print(malfunc_msg)
-        delay_print(files_msg)
-        delay_print(reboot_msg)
+    while True:
+        print('press /')
+        user_input = input('> \n')
+        error_msg = 'Error! Engine overloading \n'
+        malfunc_msg = 'Magiteck malfunction \n'
+        files_msg = 'Some systems and files have been lost or damaged \n'
+        reboot_msg = 'Do you wish to reboot? \n'
+        if user_input == '/':
+            delay_print(error_msg)
+            delay_print(malfunc_msg)
+            delay_print(files_msg)
+            delay_print(reboot_msg)
 
-        inpt = input("> Y/N?")
-        if inpt.lower() == 'y':
-            screen_roll()
-            login_riddles()
-        elif inpt.lower() == 'n':
-            start()
-    else:
-        start()
+            user_input = input("> Y/N?")
+            if user_input.lower() == 'y':
+                screen_roll()
+                login_riddles()
+                break
+            elif user_input.lower() == 'n':
+                continue
 
 
-start()
+if __name__ == '__main__':
+    start()
